@@ -1,10 +1,9 @@
 from playwright.sync_api import sync_playwright
-from config import BASE_URL
+from config import BASE_URL,test_page_num
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=False)
     page = browser.new_page()
-    test_page_num = 5
     page.goto(f"{BASE_URL}/en/car/page/{test_page_num}")
     page.wait_for_timeout(5000)
 
@@ -16,7 +15,7 @@ with sync_playwright() as p:
         l for l in links if l and "/showroom/" not in l
     ]))
 
-    page.goto(f"{BASE_URL}{valid_links[12]}")
+    page.goto(f"{BASE_URL}{valid_links[15]}")
     page.wait_for_timeout(5000)
 
     overview = page.locator("#listing-overview")
